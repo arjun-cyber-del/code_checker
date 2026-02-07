@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Code Checker</title>
+    <style>
+        body { font-family: Arial; padding: 30px; }
+        textarea { width: 100%; height: 200px; }
+        pre { background: #f4f4f4; padding: 10px; }
+        .error { color: red; }
+        .ok { color: green; }
+    </style>
+</head>
+<body>
+
+<h2>🐍 Python Code Checker</h2>
+<p>Paste your Python code below:</p>
+
+<form method="POST">
+    <textarea name="code" placeholder="Paste Python code here...">{{ code }}</textarea><br><br>
+    <button type="submit">Check Code</button>
+</form>
+
+{% if result %}
+    <hr>
+    {% if result.status == "ok" %}
+        <p class="ok">{{ result.message }}</p>
+    {% else %}
+        <p class="error">❌ Syntax Error on line {{ result.line }}</p>
+        <pre>{{ result.code }}
+{{ result.pointer }}</pre>
+        <p class="error">{{ result.message }}</p>
+    {% endif %}
+{% endif %}
+
+</body>
+</html>
